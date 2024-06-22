@@ -6,8 +6,14 @@ A Database Management System
 2. CMake >= 3.28.3
 
 # Building
-```cmake .```
-```cmake --build .```
+
+## MacOS
+1. `chmod +x build.sh`
+2. `./build.sh`
+
+## Windows
+1. `chmod +x build.bat`
+2. `build.bat`
 
 # Running
-```./bin/cdb```
+`./build/cdb`

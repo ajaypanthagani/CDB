@@ -1,13 +1,14 @@
 cmake_minimum_required(VERSION 3.28.3)
+project(cdb VERSION 1.0)
 
-project(cdb)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib)
+# Include directories
+include_directories(include)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+# Automatically collect all source files
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
-
+# Add the executable
 add_executable(cdb ${SOURCES})
