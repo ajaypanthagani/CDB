@@ -1,15 +1,13 @@
 #include <iostream>
 #include "CDB.h"
 
-using namespace std;
-
 int main() {
     CDB cdb;
 
     if(cdb.initialize()){
         cdb.run();
     } else {
-        cerr << "Failed to initialize CDB." << endl;
+        std::cerr << "Failed to initialize CDB." << std::endl;
         return -1;
     }
 

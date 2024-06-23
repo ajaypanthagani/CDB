@@ -1,21 +1,19 @@
 #include <iostream>
 #include "CDB.h"
 
-using namespace std;
-
 CDB::~CDB() {
     cleanup();
 }
 
 bool CDB::initialize(){
-    cout << "Initializing..." << endl;
+    std::cout << "Initializing..." << std::endl;
     return true;
 }
 
 void CDB::run(){
-    cout << "Running..." << endl;
+    std::cout << "Running..." << std::endl;
 }
 
 void CDB::cleanup(){
-    cout << "Cleaning..." << endl;
+    std::cout << "Cleaning..." << std::endl;
 }
