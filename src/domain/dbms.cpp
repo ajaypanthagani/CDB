@@ -2,8 +2,8 @@
 
 namespace Domain {
 
-    void DatabaseManager::createDatabase(const std::string& dbName) {
-        fs::path dbPath(dbName);
+    void DBMS::createDatabase(const std::string& dbName) {
+        fs::path dbPath(Constants::rootDirectory + dbName);
         if (!fs::exists(dbPath)) {
             fs::create_directory(dbPath);
             std::cout << "Database created: " << dbName << std::endl;
@@ -12,8 +12,8 @@ namespace Domain {
         }
     }
 
-    void DatabaseManager::createTable(const std::string& dbName, const std::string& tableName, const std::vector<std::string>& schema) {
-        fs::path tablePath(dbName + "/" + tableName + Constants::tableFileExtension);
+    void DBMS::createTable(const std::string& dbName, const std::string& tableName, const std::vector<std::string>& schema) {
+        fs::path tablePath(Constants::rootDirectory + dbName + "/" + tableName + Constants::tableFileExtension);
         if (!fs::exists(tablePath)) {
             dbms::Table table;
             table.set_name(tableName);
@@ -27,8 +27,8 @@ namespace Domain {
         }
     }
 
-    void DatabaseManager::insertRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData) {
-        fs::path tablePath(dbName + "/" + tableName + Constants::tableFileExtension);
+    void DBMS::insertRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData) {
+        fs::path tablePath(Constants::rootDirectory + dbName + "/" + tableName + Constants::tableFileExtension);
         if (fs::exists(tablePath)) {
             dbms::Table table = loadTableFromFile(tablePath.string());
             dbms::TableRow* newRow = table.add_rows();
@@ -42,8 +42,8 @@ namespace Domain {
         }
     }
 
-    void DatabaseManager::printTable(const std::string& dbName, const std::string& tableName) {
-        fs::path tablePath(dbName + "/" + tableName + Constants::tableFileExtension);
+    void DBMS::printTable(const std::string& dbName, const std::string& tableName) {
+        fs::path tablePath(Constants::rootDirectory + dbName + "/" + tableName + Constants::tableFileExtension);
         if (fs::exists(tablePath)) {
             dbms::Table table = loadTableFromFile(tablePath.string());
             std::cout << "Table: " << table.name() << std::endl;
@@ -65,7 +65,7 @@ namespace Domain {
         }
     }
 
-    void DatabaseManager::saveTableToFile(const std::string& filename, const dbms::Table& table) {
+    void DBMS::saveTableToFile(const std::string& filename, const dbms::Table& table) {
         std::ofstream output(filename, std::ios::binary);
         if (!output) {
             throw std::runtime_error("Failed to open file for writing: " + filename);
@@ -75,7 +75,7 @@ namespace Domain {
         }
     }
 
-    dbms::Table DatabaseManager::loadTableFromFile(const std::string& filename) {
+    dbms::Table DBMS::loadTableFromFile(const std::string& filename) {
         std::ifstream input(filename, std::ios::binary);
         if (!input) {
             throw std::runtime_error("Failed to open file for reading: " + filename);

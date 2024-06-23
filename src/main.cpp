@@ -1,16 +1,16 @@
 #include <iostream>
-#include "cdb.h"
+#include <map>
+
+#include "domain/dbms.h"
 
 int main() {
-    CDB cdb;
-
-    if(cdb.initialize()){
-        cdb.run();
-    } else {
-        std::cerr << "Failed to initialize CDB." << std::endl;
-        return -1;
-    }
-
-    std::cout << "Application Finished." << std::endl;
+    Domain::DBMS::createDatabase("mydatabase");
+    Domain::DBMS::createTable("mydatabase", "users", std::vector<std::string>{"id", "username", "password"});
+    std::map<std::string, std::string> rowData;
+    rowData["id"] = "1";
+    rowData["username"] = "some-username";
+    rowData["password"] = "some-password";
+    Domain::DBMS::insertRow("mydatabase", "users", rowData);
+    Domain::DBMS::printTable("mydatabase", "users");
     return 0;
 }

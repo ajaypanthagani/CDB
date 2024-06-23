@@ -19,7 +19,7 @@ namespace Domain {
      * \brief Manages databases and tables, providing functionalities like creating databases,
      * tables, inserting rows, and printing tables.
      */
-    class DatabaseManager {
+    class DBMS {
     public:
         /**
          * \brief Creates a new database with the given name.

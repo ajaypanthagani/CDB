@@ -1,4 +1,3 @@
-#include <iostream>
 #include "cdb.h"
 
 CDB::~CDB() {
