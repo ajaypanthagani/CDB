@@ -1,5 +1,5 @@
 #include <iostream>
-#include "CDB.h"
+#include "cdb.h"
 
 int main() {
     CDB cdb;

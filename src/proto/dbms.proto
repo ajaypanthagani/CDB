@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package dbms;
+
+// Message definition for a table row
+message TableRow {
+    map<string, string> fields = 1;
+}
+
+// Message definition for a table
+message Table {
+    string name = 1;
+    repeated string schema = 2;
+    repeated TableRow rows = 3;
+}
+
+// Message definition for a database
+message Database {
+    string name = 1;
+    repeated Table tables = 2;
+}

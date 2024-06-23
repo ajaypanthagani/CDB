@@ -5,7 +5,7 @@
 #include <string>
 
 namespace Constants {
-    using ColumnDataTypeVariant = std::variant<std::string, int, bool>;
+    std::string tableFileExtension = ".cdbtable";
 }
 
 #endif
