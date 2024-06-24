@@ -2,8 +2,10 @@
 A Database Management System
 
 # Requirements
-1. g++ >= 14.0.3
-2. CMake >= 3.28.3
+1. g++ v14.0.3
+2. CMake v3.28.3
+3. Boost v1.85.0
+4. Protobuf v3.21
 
 # Building
 
@@ -12,8 +14,7 @@ A Database Management System
 2. `./build.sh`
 
 ## Windows
-1. `chmod +x build.bat`
 2. `build.bat`
 
 # Running
-`./build/cdb`
+`sudo ./build/cdb`
