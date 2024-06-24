@@ -5,12 +5,9 @@
 
 int main() {
     Domain::DBMS::createDatabase("mydatabase");
-    Domain::DBMS::createTable("mydatabase", "users", std::vector<std::string>{"id", "username", "password"});
-    std::map<std::string, std::string> rowData;
-    rowData["id"] = "1";
-    rowData["username"] = "some-username";
-    rowData["password"] = "some-password";
-    Domain::DBMS::insertRow("mydatabase", "users", rowData);
-    Domain::DBMS::printTable("mydatabase", "users");
+    Domain::DBMS::createTable("mydatabase", "users", {{"id", "int"}, {"username", "string"}, {"password", "string"}});
+    Domain::DBMS::insertRow("mydatabase", "users", {{"id", "1"}, {"username", "apanthagani"}, {"password", "somep@ssword"}});
+    auto table = Domain::DBMS::getTable("mydatabase", "users");
+    Domain::DBMS::printTable(table);
     return 0;
 }

@@ -2,16 +2,25 @@ syntax = "proto3";
 
 package dbms;
 
+message Data {
+    oneof type {
+        int32 int_value = 1;
+        double double_value = 2;
+        string string_value = 3;
+        bool bool_value = 4; // Added bool for completeness
+    }
+}
+
 // Message definition for a table row
-message TableRow {
-    map<string, string> fields = 1;
+message Row {
+    map<string, Data> fields = 1;
 }
 
 // Message definition for a table
 message Table {
     string name = 1;
-    repeated string schema = 2;
-    repeated TableRow rows = 3;
+    map<string, string> schema = 2;
+    repeated Row rows = 3;
 }
 
 // Message definition for a database
