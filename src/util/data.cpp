@@ -1,7 +1,7 @@
 #include "util/data.h"
 
-namespace Util {
-    dbms::Data formatRawDataToDBData(const dbms::Table &table, const std::string &colName, const std::string &data) {
+namespace util {
+    dbms::Data Data::formatRawDataToDBData(const dbms::Table &table, const std::string &colName, const std::string &data) {
         auto schema = table.schema();
         auto it = schema.find(colName);
         if (it == schema.end()) {
@@ -32,4 +32,4 @@ namespace Util {
 
         return dbData;
     }
-}
+} // namespace util

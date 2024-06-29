@@ -12,10 +12,11 @@
 #include "src/proto/dbms.pb.h"
 #include "constants.h"
 #include "util/data.h"
+#include "util/table.h"
 
 namespace fs = boost::filesystem;
 
-namespace Domain {
+namespace domain {
 
     /**
      * \brief Manages databases and tables, providing functionalities like creating databases,
@@ -23,6 +24,11 @@ namespace Domain {
      */
     class DBMS {
     public:
+        /**
+         * \brief Give list of all databases
+         */
+        static std::vector<dbms::Database> getDatabases();
+
         /**
          * \brief Creates a new database with the given name.
          * \param dbName The name of the database to create.
@@ -51,30 +57,8 @@ namespace Domain {
          * \param rowData The data (fields and values) of the new row to insert.
          */
         static void insertRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData);
-
-        /**
-         * \brief Prints the contents (schema and rows) of the specified table.
-         * \param table The table that needs to be printed.
-         */
-        static void printTable(const dbms::Table& table);
-
-    private:
-        /**
-         * \brief Saves the given table object to a file.
-         * \param filename The name of the file to save the table to.
-         * \param table The Table object to serialize and save.
-         */
-        static void saveTableToFile(const std::string& filename, const dbms::Table& table);
-
-        /**
-         * \brief Loads and returns a Table object from the specified file.
-         * \param filename The name of the file to load the table from.
-         * \return The loaded Table object.
-         * \throw std::runtime_error If there's an error loading the table.
-         */
-        static dbms::Table loadTableFromFile(const std::string& filename);
     };
 
-} // namespace Database
+} // namespace domain
 
 #endif // DATABASE_MANAGER_H

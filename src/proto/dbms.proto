@@ -26,5 +26,4 @@ message Table {
 // Message definition for a database
 message Database {
     string name = 1;
-    repeated Table tables = 2;
 }
