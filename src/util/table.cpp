@@ -1,4 +1,5 @@
 #include "util/table.h"
+#include <iomanip>
 
 namespace util {
     boost::filesystem::path Table::getTablePath(const std::string& dbName, const std::string& tableName, const bool& tableMustExist) {

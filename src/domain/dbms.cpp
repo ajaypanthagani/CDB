@@ -59,4 +59,41 @@ namespace domain {
 
         util::Table::saveTableToFile(tablePath.string(), table);
     }
+
+    int DBMS::deleteRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData) {
+        auto tablePath = util::Table::getTablePath(dbName, tableName, true);
+
+        dbms::Table table = util::Table::loadTableFromFile(tablePath.string());
+        auto rows = table.rows();
+        int index = 0;
+        std::vector<int> rowsToDelete;
+
+        if (rowData.size() == 0) rows.Clear();
+
+        for (const dbms::Row& row: rows) {
+            auto fields = row.fields();
+            int matchingColumns = 0;
+
+            for (const auto& [col, val] : rowData) {
+                auto field = fields[col];
+
+                if (field.string_value() != val) {
+                    goto end;
+                }
+                matchingColumns++;
+            }
+
+            end:
+            if (matchingColumns == rowData.size()) rowsToDelete.push_back(index);
+            index++;
+        }
+
+        for (int i: rowsToDelete) {
+            rows.DeleteSubrange(i, 1);
+        }
+
+        (*table.mutable_rows()) = rows;
+        util::Table::saveTableToFile(tablePath.string(), table);
+        return rowsToDelete.size();
+    }
 } // namespace domain
