@@ -57,6 +57,14 @@ namespace domain {
          * \param rowData The data (fields and values) of the new row to insert.
          */
         static void insertRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData);
+
+        /**
+         * \brief Deletes a matching rows from the specified table of the database.
+         * \param dbName The name of the database.
+         * \param tableName The name of the table to delete from.
+         * \param rowData The data (fields and values) of the rows to delete.
+         */
+        static int deleteRow(const std::string& dbName, const std::string& tableName, const std::map<std::string, std::string>& rowData);
     };
 
 } // namespace domain
