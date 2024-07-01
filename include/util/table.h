@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <iomanip>
 #include <boost/filesystem.hpp>
 #include "constants.h"
 #include "src/proto/dbms.pb.h"

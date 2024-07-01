@@ -78,12 +78,11 @@ namespace domain {
                 auto field = fields[col];
 
                 if (field.string_value() != val) {
-                    goto end;
+                    break;
                 }
                 matchingColumns++;
             }
 
-            end:
             if (matchingColumns == rowData.size()) rowsToDelete.push_back(index);
             index++;
         }
