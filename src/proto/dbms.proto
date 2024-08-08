@@ -27,3 +27,11 @@ message Table {
 message Database {
     string name = 1;
 }
+
+message DeleteRequest {}
+
+message DeleteResponse {}
+
+service CDB {
+    rpc Delete (DeleteRequest) returns (DeleteResponse) {}
+}

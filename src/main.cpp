@@ -2,6 +2,7 @@
 #include <map>
 
 #include "domain/dbms.h"
+// #include "server.cpp"
 
 int main() {
     domain::DBMS::createDatabase("newdatabase");
@@ -17,6 +18,7 @@ int main() {
     int rowsDeleted = domain::DBMS::deleteRow("newdatabase", "newtableo", {{"id", "1"}});
     auto table = domain::DBMS::getTable("newdatabase", "newtableo");
 
+    // RunServer();
     util::Table::printTable(table);
     return 0;
 }
